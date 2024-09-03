@@ -1,0 +1,1 @@
+Criação do projeto blog usando Kubernetes para escalar aplicação
