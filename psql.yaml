@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: database
+  labels:
+    app: psql  
+spec:
+  selector:
+    matchLabels:
+      app: psql
+  template:
+    metadata:
+      labels:
+        app: psql
+    spec:
+      containers:
+        - name: postsql 
+          image: postgres:13-alpine
+          env: 
+          - name: POSTGRES_DB 
+            value: "blog_db"
+          - name: POSTGRES_USER 
+            value: "anderson"
+          - name: POSTGRES_PASSWORD 
+            value: "machado"
+          - name: POSTGRES_HOST
+            value: "localhost"
+          - name: POSTGRES_PORT
+            value: "5432"
+          ports:
+            - containerPort: 5432
+  replicas: 2
+
+
+    

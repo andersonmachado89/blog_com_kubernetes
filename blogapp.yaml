@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: djangoapp
+  labels:
+    app: djangoapp
+spec:
+  selector:
+    matchLabels:
+      app: djangoapp
+  template:
+    metadata:
+      labels:
+        app: djangoapp
+    spec:
+      containers:
+        - name: djangoapp
+          image: andersonmachado89/blog_djangoapp:1.0
+          ports:
+            - containerPort: 8000
+          envFrom:
+            - secretRef:
+                name: blogapp-secret
+            - configMapRef:
+                name: blogapp-config 
+  replicas: 3
+
+
+  
+
+    
